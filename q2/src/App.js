@@ -1,39 +1,49 @@
-import React, {useState}from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import 'h8k-components';
 
 import Articles from './components/Articles';
-// import {articles} from './App.test'
 
 const title = "Sorting Articles";
 
 function App({articles}) {
-    const [sortArray, setSortArray] = useState(articles);
+    const [sortedby, setSortedBy] = useState();
 
-    function sortByDate (){
-        setSortArray( sortArray => {
-        return  setSortArray(articles.sort((a, b) => new Date(...a.date.split('-')) - new Date(...b.date.split('-'))).reverse());         
-        }) 
+    let refinedArticles = function(){
+        if(sortedby === 0){
+            return articles.sort((a,b) => (b.upvotes > a.upvotes) ? 1 : ((a.upvotes > b.upvotes) ? -1 : 0));
+        }else{
+            return articles.sort((a,b) => (new Date(b.date) > new Date(a.date)) ? 1 : ((new Date(a.date) > new Date(b.date)) ? -1 : 0));
+        }
     }
+    articles  = refinedArticles();
+    
+    //2nd method 
+    // const [articleList, setArticleList] = useState(articles);
 
-    function sortByUpvotes(){
-        // console.log('in')
-        // let a = articles.sort((a, b) =>  parseInt(b.upvotes) - parseInt(a.upvotes))
-        // console.log(a);
-        setSortArray( sortArray => {
-            return  setSortArray(articles.sort((a, b) => parseInt(b.upvotes) - parseInt(a.upvotes)));
-        }) 
-    }
+    // const sortByUpvote = () => {
+    //     let newArticle = [];
+    //     Object.assign(newArticle, articleList);
+    //     newArticle.sort((a,b) => {
+    //         if(a.upvotes > b.upvotes)
+    //             return -1;
+    //         if(a.upvotes < b.upvotes)
+    //             return 1;
+    //         else 
+    //             return 0;
+    //     })
+    //     setArticleList(newArticle);
+    // }
 
     return (
         <div className="App">
             <h8k-navbar header={title}></h8k-navbar>
             <div className="layout-row align-items-center justify-content-center my-20 navigation">
                 <label className="form-hint mb-0 text-uppercase font-weight-light">Sort By</label>
-                <button data-testid="most-upvoted-link" className="small" onClick={sortByUpvotes}>Most Upvoted</button>
-                <button data-testid="most-recent-link" className="small" onClick={sortByDate}>Most Recent</button>
+                <button onClick={()=>refinedArticles(setSortedBy(0))} data-testid="most-upvoted-link" className="small">Most Upvoted</button>
+                <button onClick={()=>refinedArticles(setSortedBy(1))} data-testid="most-recent-link" className="small">Most Recent</button>
             </div>
-            <Articles articles={sortArray}/>
+            <Articles articles={articles}/>
         </div>
     );
 

@@ -8,38 +8,38 @@ import {applyPolyfills, defineCustomElements} from 'h8k-components/loader';
 const ARTICLES = [
   {
     title: "A message to our customers",
-    upvotes: 12,
-    date: "2020-01-24",
+    upvotes: 11,
+    date: "2011-01-24",
   },
   {
     title: "Alphabet earnings",
-    upvotes: 22,
-    date: "2019-11-23",
+    upvotes: 12,
+    date: "2012-11-23",
   },
   {
     title: "Artificial Mountains",
-    upvotes: 2,
-    date: "2019-11-22",
+    upvotes: 31,
+    date: "2013-11-22",
   },
   {
     title: "Scaling to 100k Users",
-    upvotes: 72,
-    date: "2019-01-21",
+    upvotes: 14,
+    date: "2014-01-21",
   },
   {
     title: "the Emu War",
-    upvotes: 24,
-    date: "2019-10-21",
+    upvotes: 51,
+    date: "2015-10-21",
   },
   {
     title: "What's SAP",
-    upvotes: 1,
-    date: "2019-11-21",
+    upvotes: 16,
+    date: "2016-11-21",
   },
   {
     title: "Simple text editor has 15k monthly users",
-    upvotes: 7,
-    date: "2010-12-31",
+    upvotes: 71,
+    date: "2017-12-31",
   },
 ];
 
